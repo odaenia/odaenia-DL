@@ -187,12 +187,8 @@ class TgUploader:
                 else:
                     notMedia = True
             if self.__as_doc or notMedia:
-                if file_.upper().endswith(VIDEO_SUFFIXES) and thumb is None:
-                    thumb = take_ss(up_path)
-                    if self.__is_cancelled:
-                        if self.__thumb is None and thumb is not None and ospath.lexists(thumb):
-                            osremove(thumb)
-                        return
+                if self.__is_cancelled:
+                    return
                 for i in self.__leech_log:
                     self.__sent_msg = self.__app.send_document(chat_id=i,
                                                              document=up_path,
